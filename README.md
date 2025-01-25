@@ -80,13 +80,13 @@ A lo largo de este curso, los participantes aprenderán los fundamentos de Pytho
 
 ## Tutores
 
-1. **Nico Galer**  
+1. **Nicolás (Nico) Galer**  
    [LinkedIn](https://www.linkedin.com/in/nico-galer/)
 
-2. **Sebastián Kleiner**  
+2. **Sebastián (Sebas) Kleiner**  
    [LinkedIn](https://www.linkedin.com/in/sebastiankleiner/)
 
-3. **Mercedes Didier Garnham**  
+3. **Mercedes (Mechi) Didier Garnham**  
    [LinkedIn](https://www.linkedin.com/in/mercedes-didier-garnham/)
 
 ## Contacto
