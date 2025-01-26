@@ -271,24 +271,6 @@ if __name__ == "__main__":
 python app.py
  ```
 
- === Generador de Textos Optimizado con Ingeniería de Prompts ===
-Ingresa la tarea para generar texto (o 'salir' para terminar): Describe los beneficios de la IA en la agricultura.
-Selecciona el tipo de prompt (zero, one, few): few
-
-¿Cuántos ejemplos deseas ingresar? 2
-
-Ejemplo 1:
-Ingresa la tarea de ejemplo: Describe los beneficios de la IA en la educación.
-Ingresa la respuesta para el ejemplo: La IA en la educación permite la personalización del aprendizaje y optimiza la gestión de recursos.
-
-Ejemplo 2:
-Ingresa la tarea de ejemplo: Describe los beneficios de la IA en la salud.
-Ingresa la respuesta para el ejemplo: La IA en la salud mejora el diagnóstico temprano y personaliza tratamientos para pacientes.
-
-**Few-Shot Response:**
-Texto generado por GPT-4 versión v1.0 para el prompt: Describe los beneficios de la IA en la agricultura.
---------------------------------------------------
-
 ### Relación con Generative AI
 
 La ingeniería de prompts es una habilidad crucial para interactuar eficazmente con modelos de GenAI. Al diseñar prompts bien estructurados que incluyan el contexto adecuado y utilizar distintos tipos de prompts según la necesidad, puedes mejorar significativamente la calidad y relevancia de las respuestas generadas. Esta práctica te permitirá desarrollar aplicaciones más precisas y útiles, optimizando la interacción con modelos avanzados de lenguaje y otros sistemas generativos.
