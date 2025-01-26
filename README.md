@@ -6,6 +6,10 @@ Bienvenido al **Curso de Generative AI (GenAI)**. Este curso está diseñado par
 
 A lo largo de este curso, los participantes aprenderán los fundamentos de Python, ingeniería de prompts, desarrollo de aplicaciones con Langchain y FastAPI, gestión de bases de datos con Supabase, despliegue en Google Cloud Platform (GCP), pruebas, monitoreo y más. El curso culmina con la creación y presentación de proyectos finales que integran todas las habilidades adquiridas.
 
+
+## Drive
+   [Clases](https://drive.google.com/drive/u/0/folders/1vY-du_aWj0Hp56TTaMo3IOuE6esGCgAn)
+
 ## Objetivos
 
 - **Comprender los conceptos básicos y avanzados de Python** aplicados a la IA.
