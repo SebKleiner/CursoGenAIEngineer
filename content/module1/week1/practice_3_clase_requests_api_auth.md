@@ -38,19 +38,22 @@ En esta sesión práctica, profundizarás en el uso de la librería `requests` e
     ```python
     import requests
 
-    def obtener_datos_api(url):
-        response = requests.get(url)
-        if response.status_code == 200:
+    def obtener_imagen_perro(url):
+        try:
+            response = requests.get(url)
+            response.raise_for_status()  # Lanza error si la respuesta no es 200
             return response.json()
-        else:
-            print(f"Error: {response.status_code}")
+        except requests.exceptions.RequestException as e:
+            print(f"Error en la solicitud: {e}")
             return None
 
     if __name__ == "__main__":
-        url_get = "https://api.publicapis.org/entries"
-        datos = obtener_datos_api(url_get)
+        url_get = "https://dog.ceo/api/breeds/image/random"
+        datos = obtener_imagen_perro(url_get)
         if datos:
-            print(f"Total de APIs disponibles: {len(datos['entries'])}")
+            print(f"Imagen de perro: {datos['message']}")
+        else:
+            print("No se pudo obtener la información.")
     ```
 
 3. **Realizar una Solicitud POST:**
@@ -105,28 +108,32 @@ En esta sesión práctica, profundizarás en el uso de la librería `requests` e
     class ModeloOpenAI:
         def __init__(self, api_key):
             self.api_key = api_key
-            self.url = "https://api.openai.com/v1/completions"
+            self.url = "https://api.openai.com/v1/chat/completions"
             self.headers = {
                 "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json"
             }
 
-        def generar_texto(self, prompt, modelo="text-davinci-003", max_tokens=150):
+        def generar_texto(self, prompt, modelo="gpt-3.5-turbo", max_tokens=150):
+            messages = [
+                {"role": "system", "content": "Eres un asistente de IA que ayuda a generar textos."},
+                {"role": "user", "content": prompt},
+            ]
             payload = {
                 "model": modelo,
-                "prompt": prompt,
+                "messages": messages,
                 "max_tokens": max_tokens,
                 "temperature": 0.7
             }
             response = requests.post(self.url, headers=self.headers, json=payload)
             if response.status_code == 200:
-                return response.json()["choices"][0]["text"].strip()
+                return response.json()["choices"][0]["message"]["content"].strip()
             else:
                 print(f"Error: {response.status_code} - {response.text}")
                 return None
 
     if __name__ == "__main__":
-        api_key = "tu_api_key_aquí"  # Reemplaza con tu clave API de OpenAI
+        api_key = "API_KEY_OPENAI"  # Reemplaza con tu clave API de OpenAI
         modelo_openai = ModeloOpenAI(api_key)
         prompt = "Escribe un poema sobre la inteligencia artificial."
         texto_generado = modelo_openai.generar_texto(prompt)
@@ -238,29 +245,29 @@ En esta sesión práctica, profundizarás en el uso de la librería `requests` e
     - Modifica la clase `ModeloOpenAI` para guardar automáticamente cada interacción en la base de datos.
 
     ```python
-    import requests
-    from database import BaseDatos
-
     class ModeloOpenAI:
-        def __init__(self, api_key, db: BaseDatos):
+        def __init__(self, api_key):
             self.api_key = api_key
-            self.url = "https://api.openai.com/v1/completions"
+            self.url = "https://api.openai.com/v1/chat/completions"
             self.headers = {
                 "Authorization": f"Bearer {self.api_key}",
                 "Content-Type": "application/json"
             }
-            self.db = db
 
-        def generar_texto(self, prompt, modelo="text-davinci-003", max_tokens=150):
+        def generar_texto(self, prompt, modelo="gpt-3.5-turbo", max_tokens=150):
+            messages = [
+                {"role": "system", "content": "Eres un asistente de IA que ayuda a generar textos."},
+                {"role": "user", "content": prompt},
+            ]
             payload = {
                 "model": modelo,
-                "prompt": prompt,
+                "messages": messages,
                 "max_tokens": max_tokens,
                 "temperature": 0.7
             }
             response = requests.post(self.url, headers=self.headers, json=payload)
             if response.status_code == 200:
-                texto_generado = response.json()["choices"][0]["text"].strip()
+                texto_generado = response.json()["choices"][0]["message"]["content"].strip()
                 self.db.guardar_interaccion(prompt, texto_generado)
                 return texto_generado
             else:
@@ -268,16 +275,17 @@ En esta sesión práctica, profundizarás en el uso de la librería `requests` e
                 return None
 
     if __name__ == "__main__":
-        api_key = "tu_api_key_aquí"  # Reemplaza con tu clave API de OpenAI
+        api_key = "API_KEY_OPENAI"  # Reemplaza con tu clave API de OpenAI
         db = BaseDatos()
-        modelo_openai = ModeloOpenAI(api_key, db)
-        prompt = "Escribe un cuento sobre un robot que aprende a sentir emociones."
-        texto = modelo_openai.generar_texto(prompt)
-        if texto:
+        modelo_openai = ModeloOpenAI(api_key)
+        prompt = "Escribe un poema sobre la inteligencia artificial."
+        texto_generado = modelo_openai.generar_texto(prompt)
+        if texto_generado:
             print("Texto Generado por OpenAI:")
-            print(texto)
+            print(texto_generado)
         db.cerrar_conexion()
     ```
+
 
 4. **Crear la Aplicación Principal:**
 
@@ -393,19 +401,22 @@ En esta sesión práctica, profundizarás en el uso de la librería `requests` e
                     }
                     self.db = db
 
-                def generar_texto(self, plantilla, variables):
-                    prompt_formateado = self.formatear_prompt(plantilla, variables)
-                    prompt_limpio = self.limpiar_prompt(prompt_formateado)
+
+                def generar_texto(self, prompt, modelo="gpt-3.5-turbo", max_tokens=150):
+                    messages = [
+                        {"role": "system", "content": "Eres un asistente de IA que ayuda a generar textos."},
+                        {"role": "user", "content": prompt},
+                    ]
                     payload = {
-                        "model": "text-davinci-003",
-                        "prompt": prompt_limpio,
-                        "max_tokens": 150,
+                        "model": modelo,
+                        "messages": messages,
+                        "max_tokens": max_tokens,
                         "temperature": 0.7
                     }
                     response = requests.post(self.url, headers=self.headers, json=payload)
                     if response.status_code == 200:
-                        texto_generado = response.json()["choices"][0]["text"].strip()
-                        self.db.guardar_interaccion(prompt_limpio, texto_generado)
+                        texto_generado = response.json()["choices"][0]["message"]["content"].strip()
+                        self.db.guardar_interaccion(prompt, texto_generado)
                         return texto_generado
                     else:
                         print(f"Error: {response.status_code} - {response.text}")
