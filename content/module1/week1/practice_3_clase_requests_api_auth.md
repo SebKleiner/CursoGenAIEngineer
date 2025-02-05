@@ -394,7 +394,7 @@ En esta sesión práctica, profundizarás en el uso de la librería `requests` e
                 def __init__(self, nombre, version, api_key, db: BaseDatos):
                     super().__init__(nombre, version)
                     self.api_key = api_key
-                    self.url = "https://api.openai.com/v1/completions"
+                    self.url = "https://api.openai.com/v1/chat/completions"
                     self.headers = {
                         "Authorization": f"Bearer {self.api_key}",
                         "Content-Type": "application/json"
