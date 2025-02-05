@@ -24,7 +24,7 @@ En este ejercicio, vamos a crear un chatbot simple que interactúe con el usuari
 Primero, asegúrate de tener instaladas las bibliotecas necesarias. Puedes instalarlas usando pip en tu terminal de PyCharm:
 
 ```bash
-pip install langchain openai python-dotenv
+pip install langchain langchain-community openai python-dotenv
 ```
 
 * `langchain`: La biblioteca principal que vamos a utilizar.
