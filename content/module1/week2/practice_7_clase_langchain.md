@@ -24,7 +24,7 @@ En este ejercicio, vamos a crear un chatbot simple que interactúe con el usuari
 Primero, asegúrate de tener instaladas las bibliotecas necesarias. Puedes instalarlas usando pip en tu terminal de PyCharm:
 
 ```bash
-pip install langchain langchain-community openai python-dotenv
+pip install langchain langchain-community langchain-openai openai python-dotenv
 ```
 
 * `langchain`: La biblioteca principal que vamos a utilizar.
@@ -44,10 +44,9 @@ OPENAI_API_KEY=tu_clave_de_api_aquí
 Ahora, crea un archivo Python en tu proyecto, por ejemplo, chatbot.py, y añade el siguiente código:
 
 ```python
-import os
 from dotenv import load_dotenv
-from langchain.chat_models import ChatOpenAI
-from langchain.schema import HumanMessage, SystemMessage
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_openai import ChatOpenAI
 
 # Cargar las variables de entorno
 load_dotenv()
@@ -66,13 +65,13 @@ def chat_with_bot():
         if user_input.lower() == "salir":
             print("Chatbot: ¡Hasta luego!")
             break
-        
+
         # Crear el mensaje del usuario
         user_message = HumanMessage(content=user_input)
-        
-        # Obtener la respuesta del chatbot
-        response = chat([system_message, user_message])
-        
+
+        # Obtener la respuesta del chatbot usando `invoke`
+        response = chat.invoke([system_message, user_message])
+
         # Mostrar la respuesta del chatbot
         print(f"Chatbot: {response.content}")
 
@@ -114,7 +113,7 @@ En este ejercicio, vamos a utilizar la clase `ConversationBufferMemory` de LangC
 Si no lo has hecho ya, asegúrate de tener instaladas las bibliotecas necesarias:
 
 ```bash
-pip install langchain openai python-dotenv
+pip install langchain langchain-community langchain-openai openai python-dotenv
 ```
 #### Paso 2: Configurar las variables de entorno
 Asegúrate de tener tu clave de API de OpenAI en el archivo `.env`:
@@ -127,11 +126,12 @@ OPENAI_API_KEY=tu_clave_de_api_aquí
 Crea un archivo Python, por ejemplo, `chatbot_memoria.py`, y añade el siguiente código:
 
 ```python
-import os
 from dotenv import load_dotenv
-from langchain.chat_models import ChatOpenAI
-from langchain.chains import ConversationChain
-from langchain.memory import ConversationBufferMemory
+from langchain_openai import ChatOpenAI
+from langchain_community.chat_message_histories import ChatMessageHistory
+from langchain_core.runnables import RunnableWithMessageHistory
+from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
+
 
 # Cargar las variables de entorno
 load_dotenv()
@@ -139,26 +139,51 @@ load_dotenv()
 # Configurar el modelo de chat
 chat = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7)
 
-# Configurar la memoria para recordar el contexto de la conversación
-memory = ConversationBufferMemory()
+# Configurar el prompt con un espacio para el historial de mensajes
+prompt = ChatPromptTemplate.from_messages([
+    ("system", "Eres un chatbot útil y amigable."),
+    MessagesPlaceholder(variable_name="history"),
+    ("human", "{input}"),
+])
 
-# Crear una cadena de conversación con memoria
-conversation = ConversationChain(llm=chat, memory=memory, verbose=True)
+# Configurar la cadena de conversación
+chain = prompt | chat
+
+# Diccionario para almacenar el historial de mensajes de cada sesión
+session_histories = {}
+
+# Función para obtener el historial de mensajes de la sesión
+def get_session_history(session_id: str) -> ChatMessageHistory:
+    if session_id not in session_histories:
+        session_histories[session_id] = ChatMessageHistory()
+    return session_histories[session_id]
+
+# Configurar RunnableWithMessageHistory
+conversation = RunnableWithMessageHistory(
+    chain,
+    get_session_history,
+    input_messages_key="input",
+    history_messages_key="history",
+)
 
 # Función para interactuar con el chatbot
 def chat_with_bot():
     print("¡Hola! Soy tu chatbot con memoria. Puedes empezar a hacer preguntas. Escribe 'salir' para terminar.")
+    session_id = "example_session_id"  # Usa un ID de sesión fijo para este ejemplo
     while True:
         user_input = input("Tú: ")
         if user_input.lower() == "salir":
             print("Chatbot: ¡Hasta luego!")
             break
-        
+
         # Obtener la respuesta del chatbot
-        response = conversation.predict(input=user_input)
-        
+        response = conversation.invoke(
+            {"input": user_input},
+            config={"configurable": {"session_id": session_id}}
+        )
+
         # Mostrar la respuesta del chatbot
-        print(f"Chatbot: {response}")
+        print(f"Chatbot: {response.content}")
 
 if __name__ == "__main__":
     chat_with_bot()
@@ -196,7 +221,7 @@ En este ejercicio, vamos a utilizar la clase VectorstoreIndexCreator de LangChai
 Asegúrate de tener instaladas las bibliotecas necesarias:
 
 ```bash
-pip install langchain openai python-dotenv tiktoken faiss-cpu
+pip install langchain langchain-community langchain-openai openai python-dotenv tiktoken faiss-cpu
 ```
 * `tiktoken`: Para manejar tokens en el modelo de OpenAI.
 * `faiss-cpu`: Para la búsqueda de vectores (permite buscar información en documentos).
@@ -212,11 +237,13 @@ OPENAI_API_KEY=tu_clave_de_api_aquí
 Crea un archivo Python, por ejemplo, `chatbot_documentos.py`, y añade el siguiente código:
 
 ```python
-import os
 from dotenv import load_dotenv
-from langchain.chat_models import ChatOpenAI
-from langchain.document_loaders import TextLoader
+from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_community.document_loaders import TextLoader
 from langchain.indexes import VectorstoreIndexCreator
+from langchain.memory import ConversationBufferMemory
+from langchain.chains import ConversationalRetrievalChain
+from langchain_community.vectorstores import FAISS
 
 # Cargar las variables de entorno
 load_dotenv()
@@ -225,26 +252,44 @@ load_dotenv()
 ruta_documento = "documento.txt"  # Cambia esto por la ruta de tu archivo de texto
 loader = TextLoader(ruta_documento)
 
+# Configurar el embedding
+embedding = OpenAIEmbeddings()
+
 # Crear un índice de búsqueda basado en el documento
-index = VectorstoreIndexCreator().from_loaders([loader])
+index = VectorstoreIndexCreator(
+    vectorstore_cls=FAISS,
+    embedding=embedding
+).from_loaders([loader])
 
 # Configurar el modelo de chat
 chat = ChatOpenAI(model_name="gpt-3.5-turbo", temperature=0.7)
 
+# Configurar la memoria de la conversación
+memory = ConversationBufferMemory(memory_key="chat_history", return_messages=True)
+
+# Crear una cadena de conversación con memoria y acceso al documento
+qa_chain = ConversationalRetrievalChain.from_llm(
+    llm=chat,
+    retriever=index.vectorstore.as_retriever(),
+    memory=memory,
+)
+
 # Función para interactuar con el chatbot
 def chat_with_bot():
-    print("¡Hola! Soy tu chatbot que puede consultar documentos. Puedes hacerme preguntas sobre el contenido. Escribe 'salir' para terminar.")
+    print(
+        "¡Hola! Soy tu chatbot que puede consultar documentos y recordar nuestra conversación. Escribe 'salir' para terminar.")
     while True:
         user_input = input("Tú: ")
         if user_input.lower() == "salir":
             print("Chatbot: ¡Hasta luego!")
             break
-        
-        # Obtener la respuesta del chatbot basada en el documento
-        response = index.query(user_input, llm=chat)
-        
+
+        # Obtener la respuesta del chatbot basada en el documento y la conversación
+        response = qa_chain.invoke({"question": user_input, "chat_history": memory.buffer})
+
         # Mostrar la respuesta del chatbot
-        print(f"Chatbot: {response}")
+        print(f"Chatbot: {response['answer']}")
+
 
 if __name__ == "__main__":
     chat_with_bot()
@@ -288,8 +333,12 @@ Ahora que tienes un chatbot que puede consultar documentos, puedes experimentar 
 
 1) Cambiar el tipo de documento: Prueba cargar un archivo PDF o una página web usando `PyPDFLoade`r o `WebBaseLoader`.
 
+```bash
+pip install pypdf
+```
+
 ```python
-from langchain.document_loaders import PyPDFLoader
+from langchain_community.document_loaders import PyPDFLoader
 
 loader = PyPDFLoader("documento.pdf")
 ```
@@ -299,7 +348,10 @@ loader = PyPDFLoader("documento.pdf")
 ```python
 loader1 = TextLoader("documento1.txt")
 loader2 = TextLoader("documento2.txt")
-index = VectorstoreIndexCreator().from_loaders([loader1, loader2])
+index = VectorstoreIndexCreator(
+    vectorstore_cls=FAISS,
+    embedding=embedding
+).from_loaders([loader1, loader2])
 ```
 
 ## Relación con Generative AI
