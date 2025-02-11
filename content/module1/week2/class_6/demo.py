@@ -17,10 +17,6 @@ class OpenaiConnector:
         self.client = OpenAI()
         logging.info("OpenaiConnector initialized.")
 
-    def update_cost(self, tokens_consumed: int) -> None:
-        self.total_tokens_consumed += tokens_consumed
-        logging.info(f"Updated token consumption: {self.total_tokens_consumed} tokens used.")
-
     def get_gpt_reply(self, prompt: List[Dict[str, str]], model: str = 'gpt-4o-mini',
                       temperature: float = MODEL_TEMPERATURE, max_tokens: int = REPLY_MAX_TOKENS) -> str:
         logging.info(f"Sending request to GPT-4o with prompt: {prompt}")
@@ -92,27 +88,30 @@ def iterative_chaining():
         return len(text.split())
 
     current_text = original_text
-    word_limit = 50
-    max_iterations = 5
+    word_limit = 1
+    max_iterations = 10
 
     for i in range(max_iterations):
-        if get_word_count(current_text) <= word_limit:
-            logging.info("Text meets word limit.")
-            break
         refine_prompt = [
             {"role": "user", "content": f"Rewrite this text in fewer than {word_limit} words:\n{current_text}"}]
         current_text = OPEN_AI_CONNECTOR.get_gpt_reply(refine_prompt)
         logging.info(f"Iteration {i + 1}: {current_text}")
+        if get_word_count(current_text) <= word_limit:
+            logging.info("Text meets word limit.")
+            break
 
 
 def hierarchical_chaining():
     logging.info("Starting hierarchical chaining.")
-    outline_prompt = [{"role": "user", "content": "Provide a concise outline for an article about 'AI in Healthcare'."}]
+    outline_prompt = [{"role": "user", "content": "Provide a concise outline for an article about 'AI in Healthcare'. Only give 5 main points each main point in a different line. Dont add any other text"}]
     outline = OPEN_AI_CONNECTOR.get_gpt_reply(outline_prompt)
     logging.info(f"Generated outline: {outline}")
 
     sections = outline.split("\n")
+    logging.info(f"Expanding sections: {sections}")
+
     expanded_sections = []
+
     for section in sections:
         expand_prompt = [{"role": "user", "content": f"Expand this outline item into a detailed paragraph:\n{section}"}]
         expanded_text = OPEN_AI_CONNECTOR.get_gpt_reply(expand_prompt)
@@ -125,12 +124,38 @@ def hierarchical_chaining():
     logging.info(f"Final merged article: {final_article}")
 
 
-def main():
-    sequential_chaining()
-    branching_chaining()
-    iterative_chaining()
-    hierarchical_chaining()
+def hierarchical_plus_loop_chaining():
+    #Consigna: Agreagar validacion a cada una de las secciones del articulo de forma tal que  reduzca la cantidad de palabras a un minimo
 
+    logging.info("Starting hierarchical chaining.")
+    outline_prompt = [{"role": "user", "content": "Provide a concise outline for an article about 'AI in Healthcare'. Only give 5 main points each main point in a different line. Dont add any other text"}]
+    outline = OPEN_AI_CONNECTOR.get_gpt_reply(outline_prompt)
+    logging.info(f"Generated outline: {outline}")
+
+    sections = outline.split("\n")
+    logging.info(f"Expanding sections: {sections}")
+
+    expanded_sections = []
+
+    for section in sections:
+        expand_prompt = [{"role": "user", "content": f"Expand this outline item into a detailed paragraph:\n{section}"}]
+        expanded_text = OPEN_AI_CONNECTOR.get_gpt_reply(expand_prompt)
+        expanded_sections.append(expanded_text)
+        logging.info(f"Expanded section: {expanded_text}")
+
+    merge_prompt = [{"role": "user",
+                     "content": "Combine these paragraphs into a cohesive article:\n" + "\n\n".join(expanded_sections)}]
+    final_article = OPEN_AI_CONNECTOR.get_gpt_reply(merge_prompt)
+    logging.info(f"Final merged article: {final_article}")
+
+
+
+def main():
+    # sequential_chaining()
+    # branching_chaining()
+    # iterative_chaining()
+    # hierarchical_chaining()
+    hierarchical_plus_loop_chaining()
 
 logging.info("Starting main execution.")
 main()
