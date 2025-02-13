@@ -21,7 +21,6 @@ OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 # Initialize Supabase client
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
 
-
 class OpenaiConnector:
     def __init__(self, api_key: str) -> None:
         """
@@ -95,3 +94,15 @@ class OpenaiConnector:
 
 # Initialize OpenAI Connector
 OPEN_AI_CONNECTOR = OpenaiConnector(api_key=OPENAI_API_KEY)
+
+# Example usage
+if __name__ == "__main__":
+    async def test_openai_connector():
+        prompt = [
+            {"role": "system", "content": "You are a helpful assistant."},
+            {"role": "user", "content": "What can you do for me?"}
+        ]
+        reply = await OPEN_AI_CONNECTOR.get_gpt_reply(prompt)
+        print("Generated Reply:", reply)
+
+    asyncio.run(test_openai_connector())

@@ -20,33 +20,37 @@ def insert_data(table: str, data: dict):
     response = supabase.table(table).insert(data).execute()
     return response
 
-def update_data(table: str, filters: dict, new_data: dict):
-    """Update a record in a Supabase table based on filters."""
-    query = supabase.table(table)
-    for key, value in filters.items():
-        query = query.eq(key, value)
-    response = query.update(new_data).execute()
+def update_data(table: str, email: str, updates: dict):
+    """Update records in a Supabase table based on filters."""
+    response = (
+        supabase.table(table)
+        .update(updates)
+        .eq('email',email)
+        .execute()
+    )
     return response
 
-def select_data(table: str, filters: dict = None):
+def select_data(table: str, email: str = None):
     """Select records from a Supabase table based on optional filters."""
-    query = supabase.table(table)
-    if filters:
-        for key, value in filters.items():
-            query = query.eq(key, value)
-    response = query.select("*").execute()
+    response = (
+        supabase.table(table)
+        .select("*")
+        .eq('email',email)
+        .execute()
+    )
     return response
 
 # Example usage
 if __name__ == "__main__":
-    # Insert example
-    insert_response = insert_data("users", {"name": "John Doe", "email": "john@example.com"})
-    print("Insert Response:", insert_response)
+    # # Insert example
+    # insert_response = insert_data("users", {"name": "John Doe", "email": "john@example.com"})
+    # print("Insert Response:", insert_response)
 
     # Update example
-    update_response = update_data("users", {"email": "john@example.com"}, {"name": "John Updated"})
-    print("Update Response:", update_response)
+    # update_response = update_data("users", "john@example.com", {"name": "John Updated"})
+    # print("Update Response:", update_response)
 
-    # Select example
-    select_response = select_data("users", {"email": "john@example.com"})
-    print("Select Response:", select_response)
+    # # Select example
+    select_response = select_data("users", "john@example.com")
+    first_result = select_response.data[0]['name']
+    print("Select Response:", first_result)
