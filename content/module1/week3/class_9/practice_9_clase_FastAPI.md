@@ -43,7 +43,7 @@ def hola_mundo():
 uvicorn main:app --reload  
 ```
 
-Paso 4: Probar el endpoint
+5. Probar el endpoint
 Visita `http://localhost:8000` en tu navegador.
 
 Deberías ver:
@@ -99,9 +99,9 @@ Prueba con otro número: `http://localhost:8000/par-impar/10` → `{"resultado":
 3) Probar en Swagger UI
 Visita `http://localhost:8000/docs`.
 
-Busca el endpoint `GET /par-impar/{numero}`.
+- Busca el endpoint `GET /par-impar/{numero}`.
 
-Haz clic en "Try it out", ingresa un número y ejecuta.
+- Haz clic en "Try it out", ingresa un número y ejecuta.
 
 - Ejemplo:
 ```json
