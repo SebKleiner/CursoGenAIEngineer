@@ -100,6 +100,10 @@ class Producto(BaseModel):
 ```python
 productos_db = []  
 
+@app.get("/lista_productos")
+def lista_productos():
+    return productos_db
+
 @app.post("/productos/")  
 def crear_producto(producto: Producto):  
     productos_db.append(producto.dict())  
@@ -210,6 +214,10 @@ def registrar_usuario(usuario: UsuarioRegistro):
     }
 
 productos_db = []
+
+@app.get("/lista_productos")
+def lista_productos():
+    return productos_db
 
 @app.post("/productos/")
 def crear_producto(producto: Producto):
