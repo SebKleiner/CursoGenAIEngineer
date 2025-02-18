@@ -1,7 +1,7 @@
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 
-from stripe_session.api import api
+from fast_api.api import api
 
 app = FastAPI()
 
