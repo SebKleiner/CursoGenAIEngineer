@@ -1,0 +1,2 @@
+class MissingInfo:
+    pass
