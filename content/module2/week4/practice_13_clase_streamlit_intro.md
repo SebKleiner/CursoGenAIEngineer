@@ -156,6 +156,8 @@ def main():
 
 ### 4. Ejecutar y Probar la Aplicación (10 minutos)
 
+- [Documentación de Streamlit - Secrets](https://docs.streamlit.io/develop/api-reference/connections/secrets.toml)
+
 1. Crear archivo `.streamlit/secrets.toml`:
 ```toml
 OPENAI_API_KEY = "tu-api-key-aqui"
