@@ -19,7 +19,7 @@ def demo_cache():
     @st.cache_data
     def cargar_datos():
         # Simulamos carga de datos
-        time.sleep(2)
+        time.sleep(10)
         return pd.DataFrame({
             'A': [1, 2, 3],
             'B': [4, 5, 6]
@@ -31,7 +31,7 @@ def demo_cache():
         st.info("Los datos se cargan una sola vez y se cachean")
 
 def main():
-    st.set_page_config(page_title="Demo Estado y Cache", page_icon="💾")
+    st.set_page_config(page_title="Demo Estado y Cache", page_icon="💾", layout="wide")
     
     tab1, tab2 = st.tabs(["Estado", "Cache"])
     

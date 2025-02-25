@@ -38,6 +38,9 @@ def main():
     
     with tab1:
         demo_text_elements()
+
+        st.text_input("Nombre", value="Julian")
+
     with tab2:
         demo_input_elements()
     with tab3:
