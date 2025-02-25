@@ -1,0 +1,97 @@
+{
+  "4bb79bb1-2565-4a59-bb81-00e4fed8d28b": {
+    "created_at": "2025-02-25T13:31:58.745309",
+    "messages": [
+      {
+        "timestamp": "2025-02-25T13:31:58.745997",
+        "role": "user",
+        "content": "Hola"
+      },
+      {
+        "timestamp": "2025-02-25T13:31:59.552256",
+        "role": "assistant",
+        "content": "\u00a1Hola! \u00bfEn qu\u00e9 puedo ayudarte hoy?"
+      },
+      {
+        "timestamp": "2025-02-25T13:32:02.283323",
+        "role": "user",
+        "content": "Como eastas?"
+      },
+      {
+        "timestamp": "2025-02-25T13:32:03.328361",
+        "role": "assistant",
+        "content": "\u00a1Hola! Como asistente de inteligencia artificial, no tengo emociones ni estados f\u00edsicos, pero estoy aqu\u00ed para ayudarte en lo que necesites. \u00bfEn qu\u00e9 puedo ayudarte hoy?"
+      },
+      {
+        "timestamp": "2025-02-25T13:32:07.639120",
+        "role": "user",
+        "content": "Quisiera leer poesia"
+      },
+      {
+        "timestamp": "2025-02-25T13:32:09.550296",
+        "role": "assistant",
+        "content": "En mi coraz\u00f3n guardo un jard\u00edn secreto,\ndonde las palabras florecen en versos,\ndonde el viento susurra melod\u00edas,\ndonde el amor se convierte en poes\u00eda.\n\nEn cada verso, una emoci\u00f3n se desliza,\ncomo un r\u00edo que fluye con suavidad,\ncada palabra es como una caricia,\nque acaricia el alma con su verdad.\n\nLa poes\u00eda es el lenguaje del alma,\nque se expresa con versos y rimas,\nes el eco de los sentimientos m\u00e1s profundos,\nque se deslizan en cada estrofa y cada l\u00ednea.\n\nAs\u00ed que si deseas leer poes\u00eda"
+      },
+      {
+        "timestamp": "2025-02-25T13:33:05.035189",
+        "role": "user",
+        "content": "Ahora sobre Pablo Neruda"
+      },
+      {
+        "timestamp": "2025-02-25T13:33:07.306027",
+        "role": "assistant",
+        "content": "Pablo Neruda fue un destacado poeta chileno, considerado uno de los m\u00e1s importantes del siglo XX. Nacido como Neftal\u00ed Ricardo Reyes Basoalto en 1904 en Parral, Chile, adopt\u00f3 el seud\u00f3nimo de Pablo Neruda en honor al poeta checo Jan Neruda.\n\nNeruda es conocido por su amplia obra po\u00e9tica, que abarca una gran variedad de temas, desde el amor y la naturaleza hasta la pol\u00edtica y la historia. Algunos de sus poemas m\u00e1s famosos incluyen \"Veinte poemas de amor y una canci\u00f3n desesperada\" y \"Canto general\".\n\nAdem\u00e1s de su trabajo como po"
+      }
+    ]
+  },
+  "4989e559-91a0-4570-9788-933a23d6a3e3": {
+    "created_at": "2025-02-25T13:32:29.849062",
+    "messages": [
+      {
+        "timestamp": "2025-02-25T13:32:29.849353",
+        "role": "user",
+        "content": "Hola"
+      },
+      {
+        "timestamp": "2025-02-25T13:32:30.580667",
+        "role": "assistant",
+        "content": "\u00a1Hola! \u00bfEn qu\u00e9 puedo ayudarte hoy?"
+      },
+      {
+        "timestamp": "2025-02-25T13:32:31.530969",
+        "role": "user",
+        "content": "Como estas?"
+      },
+      {
+        "timestamp": "2025-02-25T13:32:32.517061",
+        "role": "assistant",
+        "content": "\u00a1Hola! Soy un asistente virtual, as\u00ed que no tengo emociones, pero estoy aqu\u00ed para ayudarte. \u00bfEn qu\u00e9 puedo asistirte hoy?"
+      },
+      {
+        "timestamp": "2025-02-25T13:32:38.300930",
+        "role": "user",
+        "content": "Quisiera leer una poesia sobre futbol"
+      },
+      {
+        "timestamp": "2025-02-25T13:32:40.398520",
+        "role": "assistant",
+        "content": "En el campo de batalla, el bal\u00f3n se desliza,\nentre piernas h\u00e1biles y mente decidida,\njugadores de alma valiente y coraz\u00f3n ardiente,\nbuscan la gloria en cada jugada, en cada momento.\n\nLa afici\u00f3n enardecida, grita y anima sin cesar,\ncolores y pasiones se mezclan en el aire,\nel f\u00fatbol es arte, es pasi\u00f3n, es vida,\nun juego que une, que emociona, que cautiva.\n\nEl gol es la joya m\u00e1s preciada, la victoria el tesoro,\nel sudor y el sacrificio, el precio del oro,\nen el campo de juego, se lib"
+      }
+    ]
+  },
+  "2f7041f8-8ef5-4fd1-b7fc-0e67abef5282": {
+    "created_at": "2025-02-25T13:35:52.429426",
+    "messages": [
+      {
+        "timestamp": "2025-02-25T13:35:52.429860",
+        "role": "user",
+        "content": "Hola como estas?"
+      },
+      {
+        "timestamp": "2025-02-25T13:35:53.139183",
+        "role": "assistant",
+        "content": "\u00a1Hola! Estoy aqu\u00ed para ayudarte. \u00bfEn qu\u00e9 puedo ayudarte hoy?"
+      }
+    ]
+  }
+}
