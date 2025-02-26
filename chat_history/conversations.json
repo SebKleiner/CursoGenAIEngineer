@@ -41,6 +41,16 @@
         "timestamp": "2025-02-25T13:33:07.306027",
         "role": "assistant",
         "content": "Pablo Neruda fue un destacado poeta chileno, considerado uno de los m\u00e1s importantes del siglo XX. Nacido como Neftal\u00ed Ricardo Reyes Basoalto en 1904 en Parral, Chile, adopt\u00f3 el seud\u00f3nimo de Pablo Neruda en honor al poeta checo Jan Neruda.\n\nNeruda es conocido por su amplia obra po\u00e9tica, que abarca una gran variedad de temas, desde el amor y la naturaleza hasta la pol\u00edtica y la historia. Algunos de sus poemas m\u00e1s famosos incluyen \"Veinte poemas de amor y una canci\u00f3n desesperada\" y \"Canto general\".\n\nAdem\u00e1s de su trabajo como po"
+      },
+      {
+        "timestamp": "2025-02-26T13:34:48.045708",
+        "role": "user",
+        "content": "quien escrubio esto?\n\nPablo Neruda fue un destacado poeta chileno, considerado uno de los m\u00e1s importantes del siglo XX. Nacido como Neftal\u00ed Ricardo Reyes Basoalto en 1904 en Parral, Chile, adopt\u00f3 el seud\u00f3nimo de Pablo Neruda en honor al poeta checo Jan Neruda.\n\nNeruda es conocido por su amplia obra po\u00e9tica, que abarca una gran variedad de temas, desde el amor y la naturaleza hasta la pol\u00edtica y la historia. Algunos de sus poemas m\u00e1s famosos incluyen \"Veinte poemas de amor y una canci\u00f3n desesperada\" y \"Canto general\".\n\nAdem\u00e1s de su trabajo como po"
+      },
+      {
+        "timestamp": "2025-02-26T13:34:49.964805",
+        "role": "assistant",
+        "content": "eta, Neruda tambi\u00e9n fue un activista pol\u00edtico y diplom\u00e1tico. Fue miembro del Partido Comunista de Chile y se desempe\u00f1\u00f3 como senador en su pa\u00eds. En 1971, recibi\u00f3 el Premio Nobel de Literatura por su obra po\u00e9tica, que fue el primer poeta en lengua espa\u00f1ola en recibir este galard\u00f3n.\n\nNeruda falleci\u00f3 en 1973 en Santiago, Chile, poco despu\u00e9s del golpe de Estado que derroc\u00f3 al gobierno de Salvador Allende. Su legado como poeta y activista sigue siendo relevante y su obra contin\u00faa siendo le\u00edda y estudiada en todo el mundo."
       }
     ]
   },
@@ -91,6 +101,101 @@
         "timestamp": "2025-02-25T13:35:53.139183",
         "role": "assistant",
         "content": "\u00a1Hola! Estoy aqu\u00ed para ayudarte. \u00bfEn qu\u00e9 puedo ayudarte hoy?"
+      }
+    ]
+  },
+  "43428788-6cb2-426b-98ac-75fe08844b78": {
+    "created_at": "2025-02-26T13:21:10.759405",
+    "messages": [
+      {
+        "timestamp": "2025-02-26T13:21:10.759602",
+        "role": "user",
+        "content": "Hola como estas?"
+      },
+      {
+        "timestamp": "2025-02-26T13:21:11.697598",
+        "role": "assistant",
+        "content": "\u00a1Hola! Estoy bien, \u00bfy t\u00fa? \u00bfEn qu\u00e9 puedo ayudarte hoy?"
+      },
+      {
+        "timestamp": "2025-02-26T13:21:28.872537",
+        "role": "user",
+        "content": "Podrias escribir una poesia estilo Pablo Neruda?"
+      },
+      {
+        "timestamp": "2025-02-26T13:21:30.648574",
+        "role": "assistant",
+        "content": "En el silencio de la noche estrellada,\ndonde el viento susurra secretos al o\u00eddo,\nse despierta en m\u00ed un sentimiento profundo,\nun amor tan intenso, como el mar embravecido.\n\nEn tu mirada encuentro la paz que tanto anhelo,\nen tus labios la dulzura que me hace suspirar,\nen tus manos el calor que me reconforta,\ny en tu ser la pasi\u00f3n que me hace so\u00f1ar.\n\nEres la luz que ilumina mi camino,\nel refugio donde encuentro mi calma,\nla melod\u00eda que acompa\u00f1a mis d\u00edas,\ny el susurro que me gu\u00eda hacia tu alma.\n\n"
+      },
+      {
+        "timestamp": "2025-02-26T13:21:59.584403",
+        "role": "user",
+        "content": "Quien escribio esto?\n\nRodando a goterones solos,\na gotas como dientes,\na espesos goterones de mermelada y sangre,\nrodando a goterones,\ncae el agua,\ncomo una espada en gotas,\ncomo un desgarrador r\u00edo de vidrio,\ncae mordiendo,\ngolpeando el eje de la simetr\u00eda, pegando en las costuras del\nalma,\nrompiendo cosas abandonadas, empapando lo oscuro.\n\nSolamente es un soplo, m\u00e1s h\u00famedo que el llanto,\nun l\u00edquido, un sudor, un aceite sin nombre,\nun movimiento agudo,\nhaci\u00e9ndose, espes\u00e1ndose,\ncae el agua,\na goterones lentos,\nhacia su mar, hacia su seco oc\u00e9ano,\nhacia su ola sin agua.\n\nVeo el verano extenso, y un estertor saliendo de un granero,\nbodegas, cigarras,\npoblaciones, est\u00edmulos,\nhabitaciones, ni\u00f1as\ndurmiendo con las manos en el coraz\u00f3n,\nso\u00f1ando con bandidos, con incendios,\nveo barcos,\nveo \u00e1rboles de m\u00e9dula\nerizados como gatos rabiosos,\nveo sangre, pu\u00f1ales y medias de mujer,\ny pelos de hombre,\nveo camas, veo corredores donde grita una virgen,\nveo frazadas y \u00f3rganos y hoteles.\n\nVeo los sue\u00f1os sigilosos,\nadmito los postreros d\u00edas,\ny tambi\u00e9n los or\u00edgenes, y tambi\u00e9n los recuerdos,\ncomo un p\u00e1rpado atrozmente levantado a la fuerza\nestoy mirando.\n\nY entonces hay este sonido:\nun ruido rojo de huesos,\nun pegarse de carne,\ny piernas amarillas como espigas junt\u00e1ndose.\nYo escucho entre el disparo de los besos,\nescucho, sacudido entre respiraciones y sollozos.\n\nEstoy mirando, oyendo,\ncon la mitad del alma en el mar y la mitad del alma\nen la tierra,\ny con las dos mitades del alma miro al mundo.\n\ny aunque cierre los ojos y me cubra el coraz\u00f3n enteramente,\nveo caer un agua sorda,\na goterones sordos.\nEs como un hurac\u00e1n de gelatina,\ncomo una catarata de espermas y medusas.\nVeo correr un arco iris turbio.\nVeo pasar sus aguas a trav\u00e9s de los huesos."
+      },
+      {
+        "timestamp": "2025-02-26T13:22:00.241906",
+        "role": "assistant",
+        "content": "Este poema fue escrito por el poeta chileno Pablo Neruda."
+      }
+    ]
+  },
+  "0d77323f-f2bb-4109-bb8d-909a63a557d4": {
+    "created_at": "2025-02-26T13:22:34.416661",
+    "messages": [
+      {
+        "timestamp": "2025-02-26T13:22:34.417052",
+        "role": "user",
+        "content": "Hola"
+      },
+      {
+        "timestamp": "2025-02-26T13:22:34.420992",
+        "role": "assistant",
+        "content": "Respuesta simulada de Deepseek: Hola"
+      },
+      {
+        "timestamp": "2025-02-26T13:22:36.273024",
+        "role": "user",
+        "content": "Como estas?"
+      },
+      {
+        "timestamp": "2025-02-26T13:22:36.275433",
+        "role": "assistant",
+        "content": "Respuesta simulada de Deepseek: Como estas?"
+      },
+      {
+        "timestamp": "2025-02-26T13:22:37.911376",
+        "role": "user",
+        "content": "Todo bien?"
+      },
+      {
+        "timestamp": "2025-02-26T13:22:37.915529",
+        "role": "assistant",
+        "content": "Respuesta simulada de Deepseek: Todo bien?"
+      },
+      {
+        "timestamp": "2025-02-26T13:22:43.584460",
+        "role": "user",
+        "content": "Quien escribio esto?\n\nRodando a goterones solos,\na gotas como dientes,\na espesos goterones de mermelada y sangre,\nrodando a goterones,\ncae el agua,\ncomo una espada en gotas,\ncomo un desgarrador r\u00edo de vidrio,\ncae mordiendo,\ngolpeando el eje de la simetr\u00eda, pegando en las costuras del\nalma,\nrompiendo cosas abandonadas, empapando lo oscuro.\n\nSolamente es un soplo, m\u00e1s h\u00famedo que el llanto,\nun l\u00edquido, un sudor, un aceite sin nombre,\nun movimiento agudo,\nhaci\u00e9ndose, espes\u00e1ndose,\ncae el agua,\na goterones lentos,\nhacia su mar, hacia su seco oc\u00e9ano,\nhacia su ola sin agua.\n\nVeo el verano extenso, y un estertor saliendo de un granero,\nbodegas, cigarras,\npoblaciones, est\u00edmulos,\nhabitaciones, ni\u00f1as\ndurmiendo con las manos en el coraz\u00f3n,\nso\u00f1ando con bandidos, con incendios,\nveo barcos,\nveo \u00e1rboles de m\u00e9dula\nerizados como gatos rabiosos,\nveo sangre, pu\u00f1ales y medias de mujer,\ny pelos de hombre,\nveo camas, veo corredores donde grita una virgen,\nveo frazadas y \u00f3rganos y hoteles.\n\nVeo los sue\u00f1os sigilosos,\nadmito los postreros d\u00edas,\ny tambi\u00e9n los or\u00edgenes, y tambi\u00e9n los recuerdos,\ncomo un p\u00e1rpado atrozmente levantado a la fuerza\nestoy mirando.\n\nY entonces hay este sonido:\nun ruido rojo de huesos,\nun pegarse de carne,\ny piernas amarillas como espigas junt\u00e1ndose.\nYo escucho entre el disparo de los besos,\nescucho, sacudido entre respiraciones y sollozos.\n\nEstoy mirando, oyendo,\ncon la mitad del alma en el mar y la mitad del alma\nen la tierra,\ny con las dos mitades del alma miro al mundo.\n\ny aunque cierre los ojos y me cubra el coraz\u00f3n enteramente,\nveo caer un agua sorda,\na goterones sordos.\nEs como un hurac\u00e1n de gelatina,\ncomo una catarata de espermas y medusas.\nVeo correr un arco iris turbio.\nVeo pasar sus aguas a trav\u00e9s de los huesos."
+      },
+      {
+        "timestamp": "2025-02-26T13:22:43.586768",
+        "role": "assistant",
+        "content": "Respuesta simulada de Deepseek: Quien escribio esto?\n\nRodando a goterones solos,\na gotas como dientes,\na espesos goterones de mermelada y sangre,\nrodando a goterones,\ncae el agua,\ncomo una espada en gotas,\ncomo un desgarrador r\u00edo de vidrio,\ncae mordiendo,\ngolpeando el eje de la simetr\u00eda, pegando en las costuras del\nalma,\nrompiendo cosas abandonadas, empapando lo oscuro.\n\nSolamente es un soplo, m\u00e1s h\u00famedo que el llanto,\nun l\u00edquido, un sudor, un aceite sin nombre,\nun movimiento agudo,\nhaci\u00e9ndose, espes\u00e1ndose,\ncae el agua,\na goterones lentos,\nhacia su mar, hacia su seco oc\u00e9ano,\nhacia su ola sin agua.\n\nVeo el verano extenso, y un estertor saliendo de un granero,\nbodegas, cigarras,\npoblaciones, est\u00edmulos,\nhabitaciones, ni\u00f1as\ndurmiendo con las manos en el coraz\u00f3n,\nso\u00f1ando con bandidos, con incendios,\nveo barcos,\nveo \u00e1rboles de m\u00e9dula\nerizados como gatos rabiosos,\nveo sangre, pu\u00f1ales y medias de mujer,\ny pelos de hombre,\nveo camas, veo corredores donde grita una virgen,\nveo frazadas y \u00f3rganos y hoteles.\n\nVeo los sue\u00f1os sigilosos,\nadmito los postreros d\u00edas,\ny tambi\u00e9n los or\u00edgenes, y tambi\u00e9n los recuerdos,\ncomo un p\u00e1rpado atrozmente levantado a la fuerza\nestoy mirando.\n\nY entonces hay este sonido:\nun ruido rojo de huesos,\nun pegarse de carne,\ny piernas amarillas como espigas junt\u00e1ndose.\nYo escucho entre el disparo de los besos,\nescucho, sacudido entre respiraciones y sollozos.\n\nEstoy mirando, oyendo,\ncon la mitad del alma en el mar y la mitad del alma\nen la tierra,\ny con las dos mitades del alma miro al mundo.\n\ny aunque cierre los ojos y me cubra el coraz\u00f3n enteramente,\nveo caer un agua sorda,\na goterones sordos.\nEs como un hurac\u00e1n de gelatina,\ncomo una catarata de espermas y medusas.\nVeo correr un arco iris turbio.\nVeo pasar sus aguas a trav\u00e9s de los huesos."
+      }
+    ]
+  },
+  "b5df5342-0dc1-4f49-87ef-93c7dbd8258b": {
+    "created_at": "2025-02-26T13:32:03.148098",
+    "messages": [
+      {
+        "timestamp": "2025-02-26T13:32:03.150130",
+        "role": "user",
+        "content": "Hola como estas"
+      },
+      {
+        "timestamp": "2025-02-26T13:32:04.108425",
+        "role": "assistant",
+        "content": "\u00a1Hola! Estoy aqu\u00ed para ayudarte. \u00bfEn qu\u00e9 puedo asistirte hoy?"
       }
     ]
   }
