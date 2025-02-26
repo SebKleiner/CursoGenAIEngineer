@@ -196,6 +196,71 @@
         "timestamp": "2025-02-26T13:32:04.108425",
         "role": "assistant",
         "content": "\u00a1Hola! Estoy aqu\u00ed para ayudarte. \u00bfEn qu\u00e9 puedo asistirte hoy?"
+      },
+      {
+        "timestamp": "2025-02-26T13:40:10.329894",
+        "role": "user",
+        "content": "Todo bien?"
+      },
+      {
+        "timestamp": "2025-02-26T13:40:10.333924",
+        "role": "assistant",
+        "content": "Respuesta simulada de Deepseek: Todo bien?"
+      }
+    ]
+  },
+  "059cda9b-c577-49bf-91c7-6167f91ebe7e": {
+    "created_at": "2025-02-26T13:40:20.848180",
+    "messages": [
+      {
+        "timestamp": "2025-02-26T13:40:20.849480",
+        "role": "user",
+        "content": "Hola como estas?"
+      },
+      {
+        "timestamp": "2025-02-26T13:40:28.013048",
+        "role": "user",
+        "content": "Todo bien?"
+      },
+      {
+        "timestamp": "2025-02-26T13:40:28.017103",
+        "role": "assistant",
+        "content": "Respuesta simulada de Deepseek: Todo bien?"
+      }
+    ]
+  },
+  "a813b807-933f-4251-a34f-a68ad032f3c6": {
+    "created_at": "2025-02-26T13:40:42.465554",
+    "messages": [
+      {
+        "timestamp": "2025-02-26T13:40:42.466595",
+        "role": "user",
+        "content": "Me alegra trabajar contigo"
+      },
+      {
+        "timestamp": "2025-02-26T13:40:43.647193",
+        "role": "assistant",
+        "content": "\u00a1Me alegra trabajar contigo tambi\u00e9n! Juntos podemos lograr grandes cosas. \u00bfEn qu\u00e9 proyecto estamos trabajando juntos?"
+      }
+    ]
+  },
+  "61a4daa8-7539-456c-8ff8-e7a39c97f6e5": {
+    "created_at": "2025-02-26T13:41:28.188203",
+    "messages": [
+      {
+        "timestamp": "2025-02-26T13:41:28.189132",
+        "role": "user",
+        "content": "Hola como estas"
+      }
+    ]
+  },
+  "56915c3a-252d-4415-a6e1-1492cd8f276f": {
+    "created_at": "2025-02-26T13:42:02.013253",
+    "messages": [
+      {
+        "timestamp": "2025-02-26T13:42:02.014285",
+        "role": "user",
+        "content": "Hey!"
       }
     ]
   }

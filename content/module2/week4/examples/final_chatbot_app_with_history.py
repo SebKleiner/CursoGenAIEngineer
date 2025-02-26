@@ -243,7 +243,7 @@ class ModelBase:
         env_key_map = {
             "GPT-3.5": "GPT35_API_KEY",
             "Deepseek": "DEEPSEEK_API_KEY",
-            "LLaMA": "LLAMA_API_KEY"
+            "LLaMA-2": "LLAMA_API_KEY"
         }
         
         env_key_name = env_key_map.get(name)
@@ -291,7 +291,7 @@ class DeepseekModel(ModelBase):
 
 class LlamaModel(ModelBase):
     def __init__(self):
-        super().__init__("LLaMA")
+        super().__init__("LLaMA-2")
     
     def generate(self, prompt):
         return f"Respuesta simulada de LLaMA: {prompt}"
@@ -389,21 +389,50 @@ def render_history_dashboard():
     total_convs = len(conversations)
     total_msgs = sum(conv["message_count"] for conv in conversations)
     
-    col1, col2 = st.columns(2)
+    col1, col2, col3 = st.columns(3)
     with col1:
         st.metric("Total Conversaciones", total_convs)
     with col2:
         st.metric("Total Mensajes", total_msgs)
+    with col3:
+        # Botón para descargar todo el historial
+        if st.button("📥 Descargar Todo"):
+            # Convertir el historial completo a JSON
+            full_history = json.dumps(conversation_manager.history, indent=2)
+            st.download_button(
+                "Descargar Historial Completo",
+                full_history,
+                "historial_completo.json",
+                "application/json",
+                use_container_width=True
+            )
     
     for conv in conversations:
         with st.expander(f"Conversación {conv['id'][:8]} - {conv['created_at']}"):
             st.write(f"Mensajes: {conv['message_count']}")
-            if st.button("Cargar", key=conv['id']):
-                # Usar el nuevo método load_conversation
-                if conversation_manager.load_conversation(conv['id']):
-                    st.rerun()
-                else:
-                    st.error("Error al cargar la conversación")
+            col1, col2 = st.columns(2)
+            with col1:
+                if st.button("Cargar", key=f"load_{conv['id']}"):
+                    if conversation_manager.load_conversation(conv['id']):
+                        st.rerun()
+                    else:
+                        st.error("Error al cargar la conversación")
+            
+            with col2:
+                # Botón para descargar conversación individual
+                if st.button("Descargar", key=f"download_{conv['id']}"):
+                    # Obtener solo esta conversación
+                    single_conv = {
+                        conv['id']: conversation_manager.history[conv['id']]
+                    }
+                    conv_json = json.dumps(single_conv, indent=2)
+                    st.download_button(
+                        "Descargar Conversación",
+                        conv_json,
+                        f"conversacion_{conv['id'][:8]}.json",
+                        "application/json",
+                        use_container_width=True
+                    )
 
 def chat_interface():
     logger = StreamlitLogger().get_logger()
