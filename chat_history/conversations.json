@@ -51,6 +51,26 @@
         "timestamp": "2025-02-26T13:34:49.964805",
         "role": "assistant",
         "content": "eta, Neruda tambi\u00e9n fue un activista pol\u00edtico y diplom\u00e1tico. Fue miembro del Partido Comunista de Chile y se desempe\u00f1\u00f3 como senador en su pa\u00eds. En 1971, recibi\u00f3 el Premio Nobel de Literatura por su obra po\u00e9tica, que fue el primer poeta en lengua espa\u00f1ola en recibir este galard\u00f3n.\n\nNeruda falleci\u00f3 en 1973 en Santiago, Chile, poco despu\u00e9s del golpe de Estado que derroc\u00f3 al gobierno de Salvador Allende. Su legado como poeta y activista sigue siendo relevante y su obra contin\u00faa siendo le\u00edda y estudiada en todo el mundo."
+      },
+      {
+        "timestamp": "2025-02-26T13:47:51.374670",
+        "role": "user",
+        "content": "Como estas?"
+      },
+      {
+        "timestamp": "2025-02-26T13:47:52.747598",
+        "role": "assistant",
+        "content": "\u00a1Hola! Soy un asistente virtual, as\u00ed que no tengo emociones, pero estoy aqu\u00ed para ayudarte en lo que necesites. \u00bfEn qu\u00e9 puedo ayudarte hoy?"
+      },
+      {
+        "timestamp": "2025-02-26T13:49:40.001795",
+        "role": "user",
+        "content": "Todo bien?"
+      },
+      {
+        "timestamp": "2025-02-26T13:49:40.003542",
+        "role": "assistant",
+        "content": "Respuesta simulada de LLaMA: Todo bien?"
       }
     ]
   },
@@ -261,6 +281,121 @@
         "timestamp": "2025-02-26T13:42:02.014285",
         "role": "user",
         "content": "Hey!"
+      }
+    ]
+  },
+  "ad1e9031-f833-472e-9a7e-5b191dcf7cf0": {
+    "created_at": "2025-02-26T13:48:02.656922",
+    "messages": [
+      {
+        "timestamp": "2025-02-26T13:48:02.658595",
+        "role": "user",
+        "content": "Hola como estas?"
+      },
+      {
+        "timestamp": "2025-02-26T13:48:02.662812",
+        "role": "assistant",
+        "content": "Respuesta simulada de Deepseek: Hola como estas?"
+      },
+      {
+        "timestamp": "2025-02-26T13:48:15.883450",
+        "role": "user",
+        "content": "Quisiera saber como esta la temperatura en Espa\u00f1a hoy"
+      },
+      {
+        "timestamp": "2025-02-26T13:48:15.886993",
+        "role": "assistant",
+        "content": "Respuesta simulada de Deepseek: Quisiera saber como esta la temperatura en Espa\u00f1a hoy"
+      }
+    ]
+  },
+  "566e3487-2f84-4cb9-9e51-10438ede46da": {
+    "created_at": "2025-02-26T13:49:21.497269",
+    "messages": [
+      {
+        "timestamp": "2025-02-26T13:49:21.498396",
+        "role": "user",
+        "content": "Hola como estas?"
+      },
+      {
+        "timestamp": "2025-02-26T13:49:21.501430",
+        "role": "assistant",
+        "content": "Respuesta simulada de LLaMA: Hola como estas?"
+      },
+      {
+        "timestamp": "2025-02-26T13:49:30.525802",
+        "role": "user",
+        "content": "Todo bien?"
+      },
+      {
+        "timestamp": "2025-02-26T13:49:30.529408",
+        "role": "assistant",
+        "content": "Respuesta simulada de LLaMA: Todo bien?"
+      }
+    ]
+  },
+  "c84897ea-6746-4908-a3cc-3d4c89c99822": {
+    "created_at": "2025-02-26T13:50:37.876698",
+    "messages": [
+      {
+        "timestamp": "2025-02-26T13:50:37.877433",
+        "role": "user",
+        "content": "Como estaS?"
+      },
+      {
+        "timestamp": "2025-02-26T13:50:37.881306",
+        "role": "assistant",
+        "content": "Respuesta simulada de LLaMA: Como estaS?"
+      },
+      {
+        "timestamp": "2025-02-26T13:50:39.460214",
+        "role": "user",
+        "content": "Todo bien?"
+      },
+      {
+        "timestamp": "2025-02-26T13:50:39.461447",
+        "role": "assistant",
+        "content": "Respuesta simulada de LLaMA: Todo bien?"
+      },
+      {
+        "timestamp": "2025-02-26T13:50:46.217585",
+        "role": "user",
+        "content": "Aca dando clase en el Bootcamp de GenAI"
+      },
+      {
+        "timestamp": "2025-02-26T13:50:46.219889",
+        "role": "assistant",
+        "content": "Respuesta simulada de LLaMA: Aca dando clase en el Bootcamp de GenAI"
+      },
+      {
+        "timestamp": "2025-02-26T13:50:50.281848",
+        "role": "user",
+        "content": "Hola"
+      },
+      {
+        "timestamp": "2025-02-26T13:50:50.285156",
+        "role": "assistant",
+        "content": "Respuesta simulada de Deepseek: Hola"
+      },
+      {
+        "timestamp": "2025-02-26T13:50:51.540420",
+        "role": "user",
+        "content": "como estaS?"
+      },
+      {
+        "timestamp": "2025-02-26T13:50:51.544625",
+        "role": "assistant",
+        "content": "Respuesta simulada de Deepseek: como estaS?"
+      },
+      {
+        "timestamp": "2025-02-26T13:50:56.934764",
+        "role": "user",
+        "content": "Todo bien?"
+      },
+      {
+        "timestamp": "2025-02-26T13:50:57.765105",
+        "role": "assistant",
+        "content": "S\u00ed, todo est\u00e1 bien. \u00bfHay algo en lo que pueda ayudarte?"
       }
     ]
   }
