@@ -29,6 +29,6 @@ docker logs -f fastapi-app
 
 1. install google cloud sdk ```brew install google-cloud-sdk```
 2. login to google cloud ```gcloud auth login```
-3. set the project ```gcloud config set project {project}```
-4. build the image: ```gcloud builds submit --tag {path} .```
+3. set the project ```gcloud config set project glossy-reserve-452115-v2```
+4. build the image: ```gcloud builds submit --tag us-docker.pkg.dev/glossy-reserve-452115-v2/curso-ai-backend/test .```
 5. deploy the service from the UI

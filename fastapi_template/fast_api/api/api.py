@@ -1,4 +1,3 @@
-import asyncio
 import os
 
 from fastapi import HTTPException, APIRouter, Request
@@ -15,7 +14,7 @@ router = APIRouter()
 
 
 @router.post("/endpoint")
-def create_checkout_session(data: TemplateRequest):
+def hello_world(data: TemplateRequest):
    return {"Hello": "World"}
 
 @router.get("/")
