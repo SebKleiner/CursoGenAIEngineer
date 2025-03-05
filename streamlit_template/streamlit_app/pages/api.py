@@ -8,7 +8,6 @@ from ..schemas.models import TemplateRequest
 # Initialize with your Supabase project URL and API key
 SUPABASE_URL = ""
 SUPABASE_KEY = os.getenv('SUPABASE_SERVICE_ROLE_KEY')
-API_KEY = os.getenv('API_KEY')
 
 # Create an APIRouter instance
 router = APIRouter()
@@ -20,5 +19,4 @@ def hello_world(data: TemplateRequest):
 
 @router.get("/")
 def read_root():
-    print(API_KEY)
-    return {"Hello": "World", "SUPABASE_KEY": SUPABASE_KEY}
+    return {"Hello": "World"}
