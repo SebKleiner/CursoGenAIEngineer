@@ -105,7 +105,10 @@ def test_read_main():
     assert response.json() == {"msg": "Hello World"}
 ```
 
-3. Ejecutar la aplicación
+3. Ejecutar la API
+```bash
+uvicorn main:app --reload  
+```
 
 ## Ejercicio 2: Separando los tests
 
