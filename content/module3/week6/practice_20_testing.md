@@ -76,8 +76,70 @@ def test_read_item():
 
 ---
 # Parte Práctica
-## Ejercicio 1: Probar un Endpoint GET
-Objetivo: Validar el comportamiento de GET /items/{id}.
+## Ejemplo 1:
+1. Instalar las dependencias:
+
+```bash
+pip install pytest pytest-cov httpx
+```
+2. Crear un archivo llamado main.py y copiar el siguiente código:
+
+```python
+from fastapi import FastAPI
+from fastapi.testclient import TestClient
+
+app = FastAPI()
+
+
+@app.get("/")
+async def read_main():
+    return {"msg": "Hello World"}
+
+
+client = TestClient(app)
+
+
+def test_read_main():
+    response = client.get("/")
+    assert response.status_code == 200
+    assert response.json() == {"msg": "Hello World"}
+```
+
+3. Ejecutar la aplicación
+
+## Ejercicio 2: Separando los tests
+
+En una aplicación real, los test se almacenan en una carpeta diferente al resto de los módulos de la aplicación. 
+
+```
+.
+├── app
+│   ├── __init__.py
+│   ├── main.py
+│   └── test_main.py
+```
+
+o en el caso de una aplicación más compleja:
+
+```
+.
+├── app/
+│   ├── __init__.py
+│   ├── main.py
+│   ├── models.py
+│   ├── schemas.py
+│   ├── database.py
+│   └── tests/
+│       ├── __init__.py
+│       ├── test_main.py
+│       └── test_models.py
+├── requirements.txt
+└── README.md
+```
+
+Vamos a usar esta organización haciendo un test para probar un Endpoint GET
+
+**Objetivo:** Validar el comportamiento de GET /items/{id}.
 
 1. Pegá el siguiente código en el archivo main.py:
 
@@ -117,6 +179,11 @@ def test_read_item_no_existente():
     assert "detail" in response.json()
 ```
 
+3. Ejecutar el test ejecutando el siguiente comando en la terminal
+```bash
+pytest
+```
+
 ## Ejecutar Tests
 ### Método 1 (Interfaz gráfica):
 
@@ -128,14 +195,15 @@ def test_read_item_no_existente():
 
 ### Método 2 (Terminal):
 
-bash
-Copy
+```bash
 pytest tests/ -v  # -v para modo detallado
+```
+
 2. Analizar Cobertura
 Instalar pytest-cov:
 
 ```bash
-pip install pytest-cov
+pip install pytest-cov httpx
 ```
 
 1. Ejecutar tests con coverage:
@@ -156,7 +224,7 @@ pytest --cov=main --cov-report=html tests/
 ¿Qué pasa si se envía un item_id no numérico? FastAPI retorna automáticamente 422 (prueba client.get("/items/abc")).
 
 
-## Ejercicio 2: Fixtures para Aislamiento
+## Ejercicio 3: Fixtures para Aislamiento
 Objetivo: Evitar que los tests compartan estado usando fixtures.
 
 1. Crear tests/conftest.py:
@@ -200,3 +268,7 @@ Escribir tests para un nuevo endpoint PUT /items/{item_id} que actualiza un item
 
 - Mockear la función de actualización en la base de datos.
 ---
+
+# Referencias:
+- [Documentación de FastAPI](https://fastapi.tiangolo.com/tutorial/testing/#extended-fastapi-app-file)
+- [Documentación PyCharm](https://www.jetbrains.com/help/pycharm/testing.html)
