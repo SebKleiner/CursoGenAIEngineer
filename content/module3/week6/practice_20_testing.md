@@ -134,10 +134,10 @@ o en el caso de una aplicación más compleja:
 │   ├── models.py
 │   ├── schemas.py
 │   ├── database.py
-│   └── tests/
-│       ├── __init__.py
-│       ├── test_main.py
-│       └── test_models.py
+├── tests/
+│   ├── __init__.py
+│   ├── test_main.py
+│   └── test_models.py
 ├── requirements.txt
 └── README.md
 ```
@@ -189,6 +189,12 @@ def test_read_item_no_existente():
 pytest
 ```
 
+o
+ 
+```bash
+pytest --cov=app --cov-report=html tests/
+```
+
 ## Ejecutar Tests
 ### Método 1 (Interfaz gráfica):
 
@@ -208,60 +214,109 @@ pytest tests/ -v  # -v para modo detallado
 Instalar pytest-cov:
 
 ```bash
-pip install pytest-cov httpx
+pip install pytest-cov
 ```
 
 1. Ejecutar tests con coverage:
 
-- En PyCharm: Click derecho en tests/ → “Run pytest with Coverage”.
+- En terminal ingresar:
 
-- En terminal:
+4. Ejecutar los Tests (Windows, Linux, macOS)
+Paso 1: Abre una terminal en la raíz del proyecto.
+Paso 2: Ejecuta estos comandos:
 
 ```bash
-pytest --cov=main --cov-report=html tests/
+# Configurar el entorno (solo una vez por sesión)
+export PYTHONPATH=$PYTHONPATH:$(pwd)   # Linux/macOS
+set PYTHONPATH=%PYTHONPATH%;%CD%       # Windows
+
+# Ejecutar tests con cobertura
+pytest --cov=app --cov-report=html tests/
 ```
 
 2. Ver reporte: Abre el archivo htmlcov/index.html en tu navegador.
 
 
+3. Interpretar el Reporte
+Porcentaje de cobertura: Verás un % general (ej: 85%) y por archivo.
+
+- Líneas cubiertas: En verde (probadas por tus tests).
+
+- Líneas no cubiertas: En rojo (no probadas).
+
+Haz clic en main.py para ver detalles línea por línea.
+
+
 ### Para practicar:
 
-¿Qué pasa si se envía un item_id no numérico? FastAPI retorna automáticamente 422 (prueba client.get("/items/abc")).
+Si se envía un item_id no numérico FastAPI retorna automáticamente 422 (prueba client.get("/items/abc")).
 
+Generá el test para este caso
 
 ## Ejercicio 3: Fixtures para Aislamiento
-Objetivo: Evitar que los tests compartan estado usando fixtures.
 
-1. Crear tests/conftest.py:
+1. Agregar el siguiente endpoint al main:
+```python
+@app.post("/items/")
+def create_item(item: dict):  # <-- Agrega esta función
+    items_db.append(item)
+    return {"message": "Item creado", "id": item["id"]}
+```
+
+Correr y evaluar el Coverage
+```bash
+pytest --cov=app --cov-report=html tests/
+```
+
+2. Crear tests/conftest.py:
 
 ```python
 import pytest
-from main import items_db
+from app.main import items_db
 
 @pytest.fixture(autouse=True)
 def reset_database():
-    # Guarda el estado original antes de cada test
-    original_items = items_db.copy()
+    original_items = items_db.copy()  # Copia los items originales
     yield  # Aquí se ejecuta el test
-    # Restaura la base de datos después del test
-    items_db.clear()
-    items_db.extend(original_items)
+    items_db.clear()  # Limpia la base de datos después del test
+    items_db.extend(original_items)  # Restaura los items originales
+
 ```
 
-2. Crea el siguiente test para POST /items:
+3. Crea el siguiente test para POST /items:
 
 ```python
 def test_create_item():
-    item_data = {"id": 3, "name": "Teclado"}
-    response = client.post("/items/", json=item_data)
+    # Datos del nuevo item
+    new_item = {"id": 3, "name": "Teclado"}
+
+    # Enviar POST al endpoint
+    response = client.post("/items/", json=new_item)
+
+    # Verificar respuesta HTTP
     assert response.status_code == 200
-    # Verificar que el item se agregó a la base de datos
-    assert any(item["id"] == 3 for item in items_db)
+    assert response.json() == {"message": "Item creado", "id": 3}
+
+    # Verificar que el item está en la base de datos (vía GET)
+    response_get = client.get("/items/3")
+    assert response_get.status_code == 200
+    assert response_get.json() == new_item
 ```
 
 ### Para practicar:
 
 Ejecuta los tests y verifica en PyCharm que el coverage aumenta.
+
+
+El archivo tests/conftest.py es un componente clave en proyectos que utilizan pytest para organizar pruebas. Su propósito principal es definir fixtures, configuraciones globales y hooks que pueden ser reutilizados en todos los archivos de prueba del proyecto. 
+```
+.
+├── app/
+│   └── main.py
+└── tests/
+    ├── conftest.py    # Fixtures globales
+    └── test_items.py  # Pruebas que usan los fixtures
+```
 
 ## Ejercicio integrador:
 
@@ -275,5 +330,5 @@ Escribir tests para un nuevo endpoint PUT /items/{item_id} que actualiza un item
 ---
 
 # Referencias:
-- [Documentación de FastAPI](https://fastapi.tiangolo.com/tutorial/testing/#extended-fastapi-app-file)
-- [Documentación PyCharm](https://www.jetbrains.com/help/pycharm/testing.html)
+- [Documentación de Testing en FastAPI](https://fastapi.tiangolo.com/tutorial/testing/#extended-fastapi-app-file)
+- [Documentación de Testing en PyCharm](https://www.jetbrains.com/help/pycharm/testing.html)
