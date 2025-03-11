@@ -1,4 +1,4 @@
-# Clase 20: Introducción al Testing (Parte 2)
+# Clase 21: Introducción al Testing (Parte 2)
 
 Hoy vamos a ver los dos tipos de testing que nos faltan:
 - Integración: Verifican interacciones entre componentes (ej: API + base de datos).
@@ -135,6 +135,67 @@ Generá un test para el ingreso de un item sin nombre:
 ```python
 invalid_item = {"id": 2}
 ```
+
+<details>
+  <summary>Ver el test para el ingreso de un item sin nombre</summary>
+
+  ```python
+    def test_create_item_with_no_name():
+        #unique_id = int(time.time())
+        #item_data = {"id": unique_id}
+        item_data = {"id": 2}
+        response_create = client.post("/items/", json=item_data)
+
+        # Verificar creación
+        assert response_create.status_code == 422
+  ```
+</details>
+
+<details>
+  <summary>Ver resolución para la validación del item en main.py</summary>
+
+  ```python
+    from fastapi import FastAPI, HTTPException
+    from pydantic import BaseModel, Field
+    from app.database import supabase
+    from postgrest.exceptions import APIError
+
+    app = FastAPI()
+
+    # Definimos el modelo de datos con validaciones
+    class Item(BaseModel):
+        id: int
+        name: str = Field(..., min_length=1, description="El nombre no puede estar vacío")
+
+    @app.get("/items/{item_id}")
+    def read_item(item_id: int):
+        response = supabase.table("clase_21").select("*").eq("id", item_id).execute()
+        if not response.data:
+            raise HTTPException(status_code=404, detail="Item no encontrado")
+        return response.data[0]
+
+    @app.post("/items/")
+    def create_item(item: Item):
+        # Validar que 'name' no contenga solo espacios
+        if not item.name.strip():
+            raise HTTPException(status_code=400, detail="El nombre no puede estar vacío")
+
+        try:
+            response = supabase.table("clase_21").insert(item.dict()).execute()
+            return response.data[0]
+        except APIError as e:
+            if "23505" in str(e):  # Código de error de duplicidad
+                raise HTTPException(
+                    status_code=409,
+                    detail="El ítem ya existe"
+                )
+            raise HTTPException(
+                status_code=500,
+                detail="Error interno del servidor"
+            )
+  ```
+</details>
+
 ---
 ## Ejercicio 2: Prueba de End-to-End (E2E)
 El test simula un flujo completo de usuario:

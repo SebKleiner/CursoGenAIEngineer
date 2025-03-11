@@ -1,4 +1,4 @@
-# Clase 20: Introducción al Testing
+# Clase 20: Introducción al Testing (Parte 1)
 
 # Objetivos: 
 - Aprender fundamentos de testing 
