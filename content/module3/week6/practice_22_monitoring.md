@@ -174,8 +174,8 @@ async def measure_request_time(request: Request, call_next):
 
 
 ---
-2️⃣ Monitoreo de Registros (Logging)
-Ejercicio: Captura y almacena errores en la API en Supabase.
+## Ejercicio 2: Monitoreo de Registros (Logging)
+Captura y almacena errores en la API en Supabase.
 
 1. Crear la tabla error_logs en Supabase con columnas timestamp, error_message, endpoint.
 | Columna        | Tipo de dato   | Descripción                             |
@@ -212,8 +212,8 @@ def log_error(endpoint: str, error_message: str):
 **Ejercicio extra:** Mejorar el código para capturar más detalles
 
 ---
-3️⃣ Monitoreo de Costos
-Ejercicio: Registrar el costo de cada request a OpenAI en Supabase.
+## Ejercicio 3: Monitoreo de Costos
+Registrar el costo de cada request a OpenAI en Supabase.
 
 1. Crear la tabla cost_logs en Supabase con columnas timestamp, model, tokens_used, cost.
 | Columna       | Tipo de dato   | Descripción                               |
