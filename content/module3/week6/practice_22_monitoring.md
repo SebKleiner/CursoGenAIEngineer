@@ -11,17 +11,17 @@ El monitoreo permite:
 ## Tipos de Monitoreo
 Existen diferentes enfoques para el monitoreo de aplicaciones:
 
-### Monitoreo de Rendimiento (APM - Application Performance Monitoring): Evalúa la velocidad y eficiencia de la aplicación, midiendo:
+### Monitoreo de Rendimiento (APM - Application Performance Monitoring): Evalúa la velocidad y eficiencia de la aplicación
 - Tiempo de respuesta de API y servicios
 - Uso de CPU y memoria
 - Latencia en bases de datos
 
-### Monitoreo de Registros (Logging): Registra eventos importantes para análisis y debugging:
+### Monitoreo de Registros (Logging): Registra eventos importantes para análisis y debugging
 - Errores y excepciones
 - Peticiones de usuarios y respuestas del sistema
 - Eventos críticos como reinicios o fallos
 
-### Monitoreo de Costos: Para aplicaciones que consumen servicios de terceros (como OpenAI), se mide:
+### Monitoreo de Costos: Para aplicaciones que consumen servicios de terceros (como OpenAI)
 - Cantidad de requests
 - Tokens utilizados
 - Costo total por API
