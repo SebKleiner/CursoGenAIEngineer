@@ -178,6 +178,7 @@ async def measure_request_time(request: Request, call_next):
 Captura y almacena errores en la API en Supabase.
 
 1. Crear la tabla error_logs en Supabase con columnas timestamp, error_message, endpoint.
+
 | Columna        | Tipo de dato   | Descripción                             |
 |---------------|---------------|-----------------------------------------|
 | `id`          | `uuid` (PK)    | Identificador único (generado automáticamente) |
@@ -216,6 +217,7 @@ def log_error(endpoint: str, error_message: str):
 Registrar el costo de cada request a OpenAI en Supabase.
 
 1. Crear la tabla cost_logs en Supabase con columnas timestamp, model, tokens_used, cost.
+
 | Columna       | Tipo de dato   | Descripción                               |
 |--------------|---------------|-------------------------------------------|
 | `id`         | `uuid` (PK)    | Identificador único (generado automáticamente) |
