@@ -170,7 +170,7 @@ async def measure_request_time(request: Request, call_next):
 
 3. Hacer requests a la API y verificar los tiempos en Supabase.
 
-**Ejercicio extra:** Agregar un filtro para monitorear solo ciertos endpoints.
+**Ejercicio extra:** Generar un nuevo endpoint a main.py y agregar un filtro para monitorear solo el endpoint nuevo.
 
 
 ---
