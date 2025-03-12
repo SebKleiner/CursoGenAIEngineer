@@ -93,50 +93,135 @@ def calcular_drift_complejidad(prompts_referencia, prompts_nuevos):
 
 ### Métricas Estadísticas Básicas
 
-#### Divergencia de Kullback-Leibler (KL)
-La divergencia KL mide la diferencia entre dos distribuciones de probabilidad P y Q:
+#### 1. Divergencia de Kullback-Leibler (KL)
+La divergencia KL mide la diferencia relativa entre dos distribuciones de probabilidad P y Q. Es una medida asimétrica que cuantifica la información perdida cuando Q se usa para aproximar P.
 
-\[ D_{KL}(P||Q) = \sum_{i} P(i) \log \frac{P(i)}{Q(i)} \]
+**Fórmula:**
+```math
+D_{KL}(P||Q) = \sum_{i} P(i) \log \left(\frac{P(i)}{Q(i)}\right)
+```
 
+**Interpretación:**
+- Rango: [0, ∞)
+- 0 indica que las distribuciones son idénticas
+- Valores más altos indican mayor diferencia entre las distribuciones
+- No es simétrica: D_KL(P||Q) ≠ D_KL(Q||P)
+
+**Implementación:**
 ```python
 def kl_divergence(p, q):
+    """
+    Calcula la divergencia KL entre dos distribuciones
+    
+    Args:
+        p: distribución de referencia (baseline)
+        q: distribución nueva
+    
+    Returns:
+        float: valor de divergencia KL
+    """
     return np.sum(np.where(p != 0, p * np.log(p / q), 0))
 ```
 
-#### Distancia de Jensen-Shannon (JS)
-Una versión simétrica y normalizada de la divergencia KL:
+#### 2. Distancia de Jensen-Shannon (JS)
+La distancia JS es una versión simétrica y suavizada de la divergencia KL. Es más útil en la práctica porque está acotada y es simétrica.
 
-\[ JSD(P||Q) = \frac{1}{2}D_{KL}(P||M) + \frac{1}{2}D_{KL}(Q||M) \]
-donde \[ M = \frac{1}{2}(P + Q) \]
-
-```python
-def jensen_shannon_distance(p, q):
-    m = 0.5 * (p + q)
-    return 0.5 * kl_divergence(p, m) + 0.5 * kl_divergence(q, m)
+**Fórmula:**
+```math
+JSD(P||Q) = \frac{1}{2}D_{KL}(P||M) + \frac{1}{2}D_{KL}(Q||M)
+```
+donde M es el promedio de las distribuciones:
+```math
+M = \frac{1}{2}(P + Q)
 ```
 
-#### Prueba de Kolmogorov-Smirnov
+**Interpretación:**
+- Rango: [0, 1]
+- 0 indica distribuciones idénticas
+- 1 indica distribuciones completamente diferentes
+- Es simétrica: JSD(P||Q) = JSD(Q||P)
+
+**Implementación:**
+```python
+def jensen_shannon_distance(p, q):
+    """
+    Calcula la distancia JS entre dos distribuciones
+    
+    Args:
+        p: primera distribución
+        q: segunda distribución
+    
+    Returns:
+        float: valor de distancia JS
+    """
+    m = 0.5 * (p + q)
+    return np.sqrt(0.5 * kl_divergence(p, m) + 0.5 * kl_divergence(q, m))
+```
+
+#### 3. Prueba de Kolmogorov-Smirnov (KS)
+La prueba KS es un test estadístico no paramétrico que determina si dos muestras provienen de la misma distribución.
+
+**Interpretación:**
+- Estadístico KS: Rango [0, 1]
+  - 0 indica distribuciones idénticas
+  - 1 indica distribuciones completamente diferentes
+- p-valor: 
+  - < 0.05 indica drift significativo
+  - ≥ 0.05 sugiere que no hay evidencia suficiente de drift
+
+**Implementación:**
 ```python
 from scipy import stats
 
 def ks_test(muestra_referencia, muestra_nueva):
+    """
+    Realiza la prueba KS entre dos muestras
+    
+    Args:
+        muestra_referencia: datos del baseline
+        muestra_nueva: nuevos datos a comparar
+    
+    Returns:
+        dict: resultados del test con interpretación
+    """
     statistic, p_value = stats.ks_2samp(muestra_referencia, muestra_nueva)
     return {
         'estadistico': statistic,
         'p_valor': p_value,
-        'drift_detectado': p_value < 0.05
+        'drift_detectado': p_value < 0.05,
+        'interpretacion': 'Drift significativo detectado' if p_value < 0.05 
+                         else 'No se detectó drift significativo'
     }
 ```
 
 ### Métricas Específicas para Texto
 
-#### Embedding Drift
+#### 1. Embedding Drift
+Mide el cambio en el espacio semántico de los textos utilizando embeddings.
+
+**Interpretación:**
+- Rango: [0, 1]
+- < 0.3: Drift bajo
+- 0.3-0.7: Drift moderado
+- > 0.7: Drift alto
+
+**Implementación:**
 ```python
 from sentence_transformers import SentenceTransformer
 import numpy as np
 
 def calcular_embedding_drift(textos_referencia, textos_nuevos, modelo='all-MiniLM-L6-v2'):
-    # Cargar modelo de embeddings
+    """
+    Calcula el drift en el espacio de embeddings
+    
+    Args:
+        textos_referencia: textos del baseline
+        textos_nuevos: nuevos textos a comparar
+        modelo: modelo de embeddings a utilizar
+    
+    Returns:
+        float: score de drift entre 0 y 1
+    """
     model = SentenceTransformer(modelo)
     
     # Calcular embeddings
@@ -152,16 +237,40 @@ def calcular_embedding_drift(textos_referencia, textos_nuevos, modelo='all-MiniL
         np.linalg.norm(centroide_ref) * np.linalg.norm(centroide_new)
     )
     
-    return drift_score
+    return {
+        'drift_score': drift_score,
+        'nivel': 'alto' if drift_score > 0.7 else 'moderado' if drift_score > 0.3 else 'bajo'
+    }
 ```
 
-#### Análisis de Sentimiento y Complejidad Léxica
+#### 2. Análisis de Sentimiento y Complejidad Léxica
+Evalúa cambios en aspectos lingüísticos como el tono emocional y la riqueza del vocabulario.
+
+**Interpretación:**
+- Sentimiento: [-1, 1]
+  - -1: muy negativo
+  - 0: neutral
+  - 1: muy positivo
+- Riqueza de vocabulario: [0, 1]
+  - Valores más altos indican mayor diversidad léxica
+
+**Implementación:**
 ```python
 from textblob import TextBlob
 import nltk
 from nltk.tokenize import word_tokenize
 
 def analizar_drift_linguistico(textos_referencia, textos_nuevos):
+    """
+    Analiza cambios en aspectos lingüísticos
+    
+    Args:
+        textos_referencia: textos del baseline
+        textos_nuevos: nuevos textos a comparar
+    
+    Returns:
+        dict: métricas de drift lingüístico con interpretación
+    """
     def metricas_texto(textos):
         sentimientos = [TextBlob(texto).sentiment.polarity for texto in textos]
         vocabulario = set(word_tokenize(' '.join(textos).lower()))
@@ -173,23 +282,57 @@ def analizar_drift_linguistico(textos_referencia, textos_nuevos):
     metricas_ref = metricas_texto(textos_referencia)
     metricas_new = metricas_texto(textos_nuevos)
     
-    return {k: abs(metricas_ref[k] - metricas_new[k]) for k in metricas_ref}
+    cambios = {k: abs(metricas_ref[k] - metricas_new[k]) for k in metricas_ref}
+    
+    return {
+        'cambios': cambios,
+        'interpretacion': {
+            'sentimiento': 'significativo' if cambios['sentimiento_medio'] > 0.3 else 'menor',
+            'vocabulario': 'significativo' if cambios['riqueza_vocabulario'] > 0.2 else 'menor'
+        }
+    }
 ```
 
 ### Métricas de Rendimiento del Modelo
 
 #### Perplexidad
-La perplexidad se calcula como:
+La perplexidad mide cuán "sorprendido" está el modelo por el texto nuevo. Es una métrica común para evaluar modelos de lenguaje.
 
-\[ \text{Perplexity} = \exp(-\frac{1}{N}\sum_{i=1}^N \log p(x_i)) \]
+**Fórmula:**
+```math
+\text{Perplexity} = \exp\left(-\frac{1}{N}\sum_{i=1}^N \log p(x_i)\right)
+```
 
+**Interpretación:**
+- Valores más bajos indican mejor rendimiento
+- Un aumento significativo puede indicar drift
+- La escala varía según el modelo y el dominio
+
+**Implementación:**
 ```python
 def calcular_perplexidad(modelo, texto):
+    """
+    Calcula la perplexidad de un texto
+    
+    Args:
+        modelo: modelo de lenguaje
+        texto: texto a evaluar
+    
+    Returns:
+        float: valor de perplexidad
+    """
     tokens = modelo.tokenize(texto)
     with torch.no_grad():
         outputs = modelo(tokens)
         loss = outputs.loss
-    return torch.exp(loss).item()
+    perplexity = torch.exp(loss).item()
+    
+    return {
+        'perplexity': perplexity,
+        'interpretacion': 'alta' if perplexity > modelo.baseline_perplexity * 1.5 
+                         else 'normal' if perplexity > modelo.baseline_perplexity * 0.5 
+                         else 'baja'
+    }
 ```
 
 ## 4. Técnicas de Monitoreo de Drift
