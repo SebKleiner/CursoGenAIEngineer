@@ -1,0 +1,55 @@
+# Guía Completa sobre Retrieval Augmented Generation (RAG)
+
+## Definición y Componentes Principales
+
+El Retrieval Augmented Generation (RAG) es un paradigma que combina sistemas de recuperación de información con modelos generativos de lenguaje (LLMs). Los componentes principales de un sistema RAG son:
+
+1. **Sistema de Indexación**: Convierte documentos en vectores (embeddings) y los almacena en una base de datos vectorial.
+2. **Motor de Recuperación**: Busca la información más relevante basada en una consulta del usuario.
+3. **Modelo de Lenguaje**: Genera respuestas coherentes utilizando tanto la consulta como la información recuperada.
+4. **Módulo de Prompt Engineering**: Formatea adecuadamente el contexto recuperado junto con la consulta.
+5. **Sistema de Evaluación**: Mide la precisión, relevancia y calidad de las respuestas generadas.
+
+## Ventajas de RAG sobre LLMs Puros
+
+- **Información Actualizada**: Acceso a conocimiento fuera del periodo de entrenamiento del LLM.
+- **Precisión Mejorada**: Reduce alucinaciones al basarse en fuentes de información verificables.
+- **Personalización**: Puede adaptarse a dominios específicos sin necesidad de fine-tuning completo.
+- **Transparencia**: Permite citar fuentes específicas para cada respuesta generada.
+- **Eficiencia en Costos**: Requiere menos parámetros que modelos más grandes especializados.
+
+## Arquitecturas Comunes de RAG
+
+### 1. RAG Básico
+- Recuperación directa de chunks de texto
+- Prompt con concatenación simple de contexto
+
+### 2. RAG Avanzado
+- Recuperación multi-etapa (coarse-to-fine)
+- Re-ranking de resultados recuperados
+- Compresión de contexto antes de enviarlo al LLM
+
+### 3. RAG Adaptativo
+- Ajusta dinámicamente la estrategia de recuperación
+- Determina cuándo es necesario recuperar vs. cuando utilizar conocimiento interno
+
+## Métricas de Evaluación para Sistemas RAG
+
+- **Precisión de Respuesta**: Exactitud factual de la información generada
+- **Relevancia de Recuperación**: Calidad de los documentos recuperados
+- **Cobertura del Contexto**: Cuánto del contexto relevante es utilizado
+- **Latencia del Sistema**: Tiempo total de respuesta del sistema completo
+
+## Desafíos y Limitaciones
+
+- **Calidad de la Base de Conocimiento**: El sistema es tan bueno como la información indexada
+- **Context Window Limitado**: Restricción en la cantidad de contexto que puede procesarse
+- **Balance entre Recuperación y Generación**: Determinar cuándo confiar en cada componente
+- **Sesgo de Recuperación**: Tendencia a recuperar solo ciertos tipos de información
+
+## Aplicaciones Prácticas
+
+- Chatbots de soporte técnico con acceso a documentación específica
+- Asistentes de investigación científica que consultan papers recientes
+- Sistemas de respuesta a preguntas sobre documentos legales o médicos
+- Herramientas educativas que responden consultas basadas en material de curso 
